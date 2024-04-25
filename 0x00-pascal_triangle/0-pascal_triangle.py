@@ -16,7 +16,7 @@ def pascal_triangle(n):
     return triangle
 
 
-# Test the function
-pascal_triangle_output = pascal_triangle(5)
-for row in pascal_triangle_output:
-    print(row)
+# # Test the function
+# pascal_triangle_output = pascal_triangle(5)
+# for row in pascal_triangle_output:
+#     print(row)
