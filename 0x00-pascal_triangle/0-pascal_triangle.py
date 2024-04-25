@@ -1,7 +1,9 @@
 #!/usr/bin/python3
+"""runing pascal"""
 
 
 def pascal_triangle(n):
+    """run pascal"""
     if n <= 0:
         return []
 
