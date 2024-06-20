@@ -4,6 +4,7 @@
     a given amount total.
 '''
 
+
 def makeChange(coins, total):
     '''
     Return: fewest number of coins needed to meet total
@@ -15,24 +16,30 @@ def makeChange(coins, total):
     total (int): The target amount to achieve with the fewest number of coins
 
     Returns:
-    int: The minimum number of coins needed to make up the total, or -1 if it's not possible
+    int: The minimum number of coins needed to make up the total, or -1 if it's
+    not possible
     '''
     if total <= 0:
         return 0
-    
-    # Create a list to store the minimum number of coins for each amount from 0 to total
+
+    # Create a list to store the minimum number of coins for each amount
+    # from 0 to total
     dp = [float('inf')] * (total + 1)
     dp[0] = 0  # Zero coins are needed to make the amount zero
-    
+
     # Iterate over each coin in the given list
     for coin in coins:
-        # For each coin, update the dp array for all amounts that can be reached with this coin
+        # For each coin, update the dp array for all amounts that can be
+        # reached with this coin
         for amount in range(coin, total + 1):
-            # Update dp[amount] to be the minimum of its current value or one more than dp[amount - coin]
+            # Update dp[amount] to be the minimum of its current value or
+            # one more than dp[amount - coin]
             dp[amount] = min(dp[amount], dp[amount - coin] + 1)
-    
-    # If dp[total] is still infinity, it means the total cannot be made up with the given coins
+
+    # If dp[total] is still infinity, it means the total cannot be made up
+    # with the given coins
     return dp[total] if dp[total] != float('inf') else -1
+
 
 # Main function for testing the makeChange function
 if __name__ == "__main__":
