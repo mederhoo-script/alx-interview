@@ -3,42 +3,37 @@
     determine the fewest number of coins needed to meet
     a given amount total.
 '''
+import sys
 
 
 def makeChange(coins, total):
     '''
-    Return: fewest number of coins needed to meet total
-    If total is 0 or less, return 0
-    If total cannot be met by any number of coins you have, return -1
+    Determine the minimum number of coins needed to meet a given amount total.
+    If total is 0 or less, return 0. If total cannot be met by any number of coins, return -1.
 
     Parameters:
-    coins (list): A list of integers representing the values of coins available
-    total (int): The target amount to achieve with the fewest number of coins
+    coins (list): A list of integers representing the values of available coins.
+    total (int): The target amount to achieve using the fewest number of coins.
 
     Returns:
-    int: The minimum number of coins needed to make up the total, or -1 if it's
-    not possible
+    int: The minimum number of coins needed to make up the total, or -1 if it's not possible.
     '''
     if total <= 0:
         return 0
 
-    # Create a list to store the minimum number of coins for each amount
-    # from 0 to total
-    dp = [float('inf')] * (total + 1)
+    # Create a list to store the minimum number of coins for each amount from 0 to total
+    dp = [sys.maxsize] * (total + 1)
     dp[0] = 0  # Zero coins are needed to make the amount zero
 
     # Iterate over each coin in the given list
     for coin in coins:
-        # For each coin, update the dp array for all amounts that can be
-        # reached with this coin
+        # For each coin, update the dp array for all amounts that can be reached with this coin
         for amount in range(coin, total + 1):
-            # Update dp[amount] to be the minimum of its current value or
-            # one more than dp[amount - coin]
-            dp[amount] = min(dp[amount], dp[amount - coin] + 1)
+            if dp[amount - coin] != sys.maxsize:
+                dp[amount] = min(dp[amount], dp[amount - coin] + 1)
 
-    # If dp[total] is still infinity, it means the total cannot be made up
-    # with the given coins
-    return dp[total] if dp[total] != float('inf') else -1
+    # If dp[total] is still sys.maxsize, it means the total cannot be made up with the given coins
+    return dp[total] if dp[total] != sys.maxsize else -1
 
 
 # Main function for testing the makeChange function
