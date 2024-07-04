@@ -61,7 +61,3 @@ def isPrime(n):
             if n % i == 0:
                 return "Not prime"
         return True
-
-
-if __name__ == "__main__":
-    print("Winner: {}".format(isWinner(5, [2, 5, 1, 4, 3])))
