@@ -59,7 +59,7 @@ def isPrime(n):
         # or equal to the square root of itself.
         for i in range(3, int(n**(1/2))+1, 2):
             if n % i == 0:
-                return False
+                return "Not prime"
         return True
 
 
